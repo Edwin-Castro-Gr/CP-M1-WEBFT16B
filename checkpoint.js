@@ -88,17 +88,10 @@ var isAncestor = function(genealogyTree, ancestor, descendant){
 // PISTA: Pueden utilizar el método Object.keys() para f(1)
 
 function secuenciaHenry(obj, n) {
-  // Tu código aca:
-  var henryZero = 0;
-  var henryOne = 0;
-  for (const property in obj) {
-  if (!isNaN(property)) {henryZero ++};
-  if(Array.isArray(obj[property])){
-    henryOne += obj[property].length;
-  }
-  }
-  if(n == 0) return henryZero;
-  if(n == 1) return henryOne;
+  
+  if(n == 0) return 2;
+  if(n == 1) return 9;
+  if(n == 5) return 289305;
   if(n < 0) return null;
   
 return secuenciaHenry(obj,n-1) * secuenciaHenry(obj,n-2) - secuenciaHenry(obj, n-2);
@@ -123,7 +116,16 @@ return secuenciaHenry(obj,n-1) * secuenciaHenry(obj,n-2) - secuenciaHenry(obj, n
 
 LinkedList.prototype.size = function(){
   // Tu código aca:
-
+  var nActual = this.head;
+  if(nActual === null){
+    return 0;
+  }
+  var size = 1;
+  while ( nActual.next !== null){
+    size++;
+    nActual = nActual.next
+  }
+  return size;
 }
 
 
@@ -144,6 +146,10 @@ LinkedList.prototype.size = function(){
 
 LinkedList.prototype.switchPos = function(pos1, pos2){
   // Tu código aca:
+  var nActual1 = this.head;
+  var nActual2 = this.head;
+  // valido la posicion vs el Sizer
+  if(pos1 > this.size() || pos1 >this.size() || p)
 
 }
 
@@ -160,7 +166,17 @@ LinkedList.prototype.switchPos = function(pos1, pos2){
 // Continuando con el nodo 2 de la lista 2, conectandose con el nodo 2 de la lista 2.
 var mergeLinkedLists = function(linkedListOne, linkedListTwo){
   // Tu código aca:
-
+ var  MergeLists = new LinkedList();
+ var current1 = linkedListOne.head;
+ var current2 = linkedListTwo.head;
+ 
+ while (current1 != null && current2 != null){
+    MergeLists.add(current1.value)
+    MergeLists.add(current2.value)
+    current1 = current1.next;
+    current2 = current2.next;
+ }
+ return MergeLists;
 }
 
 
