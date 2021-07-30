@@ -148,11 +148,27 @@ LinkedList.prototype.switchPos = function(pos1, pos2){
   // Tu código aca:
   var nActual1 = this.head;
   var nActual2 = this.head;
-  // valido la posicion vs el Sizer
-  if(pos1 > this.size() || pos1 >this.size() || p)
 
+  if(pos1 > this.size() || pos1 >this.size() || pos1 < 0 || pos2 < 0) {
+    return false;
+  }else if (this.head === null) {
+    return false;
+  }else{
+    for (let i = 0; i < pos1; i++) {
+      nActual1 = nActual1.next;
+    }
+    for (let j = 0; j < pos2; j++) {
+      
+      nActual2 = nActual2.next;
+    }
+    let aux1 = nActual2.value;
+    let aux2 = nActual1.value;
+    nActual2.value = aux2;
+    nActual1.value = aux1;
+    return true;
 }
-
+ 
+}
 // EJERCICIO 5
 // Implementar la función mergeLinkedLists que, a partir de dos listas simplemente enlazadas 
 // del mismo tamaño retorne una nueva lista con los elementos de ambas listas
