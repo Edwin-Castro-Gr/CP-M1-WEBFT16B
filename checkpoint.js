@@ -239,26 +239,84 @@ var mergeLinkedLists = function(linkedListOne, linkedListTwo){
 
 var cardGame = function(playerOneCards, playerTwoCards){
   // Tu código aca:
-  var castle1 = 100;
-  var castle2 = 100;
+  var castillo1 = 100;
+  var castillo2 = 100;
   var objfin = {
-    winner: "",
-    castle1: 0,
-    castel2: 0,
+    ganador: "",
+    castillo1: 0,
+    castillo2: 0,
   }
   do {
-    var cartaAtaque = playerOneCards.dequeue();
-    var cartaDefensa = playerOneCards.dequeue();
+    //Jugador 1
+    var cartaAtaque1 = playerOneCards.dequeue();
+    var cartaDefensa1 = playerOneCards.dequeue();
+    //jugador 2
     var cartaAtaque2 = playerTwoCards.dequeue();
     var cartaDefensa2 = playerTwoCards.dequeue();
-    if ( cartaDefensa.type ==="Protector"){
-      cartaDefensa.defense = cartaDefensa.defense * 2;
+    
+    if (cartaDefensa1.type ==="Protector"){
+      cartaDefensa1.defense = cartaDefensa1.defense * 2;
     }
-    if (cartaAtaque.type ==="Protector"){
+    if (cartaAtaque1.type ==="Protector"){
+      cartaAtaque1.defense = cartaAtaque1.defense * 2;
+    }
+      if (cartaAtaque1.type === "Destructor") {
+        cartaAtaque1.attack = cartaAtaque1.attack * 2;
+      }
+      if (cartaDefensa1.type === "Destructor"){
+        cartaDefensa1.attack = cartaDefensa1.attack * 2;
+      }
       
+      if (cartaAtaque2.type === "Protector") {
+        cartaAtaque2.defense = cartaAtaque2.defense * 2;
+      }
+      if (cartaDefensa2.type === "Protector") {
+        cartaDefensa2.defense = cartaDefensa2.defense * 2;
+      }
+      if (cartaDefensa2.type === "Destructor") {
+        cartaDefensa2.attack = cartaDefensa2.attack * 2;
+      }
+      if (cartaAtaque2.type === "Destructor"){
+        cartaAtaque2.attack = cartaAtaque2.attack * 2;
+      }
+
+      var ataqueJugador1 = cartaAtaque2.defense - cartaAtaque1.attack;
+      if (ataqueJugador1 < 0) {
+        castillo2 += ataqueJugador1;
+      }
+         
+      var ataqueJugador2 = cartaDefensa1.defense - cartaDefensa2.attack 
+      if (ataqueJugador2 < 0) { 
+        castillo1 += ataqueJugador2
+      }
+
+      if (castillo1 < 0 || castillo2 < 0) { 
+        break
+      }
+  
+  
+    } while (playerOneCards.size() > 0) //* ó cuando los mazos se acaben.
+  
+  
+    if(castillo1 < castillo2) { //Cuando Gana El jugador 1
+      objfin.ganador = "PLAYER TWO";
+      objfin.castillo1 = castillo1;
+      objfin.castillo2 = castillo2;
+    } else if (castillo1 > castillo2){ //Cuando Gana El jugador2
+      objfin.ganador = "PLAYER ONE";
+      objfin.castillo1 = castillo1;
+      objfin.castillo2 = castillo2;
+    } else { //* Cuando hay Empate
+      objfin.ganador = "TIE";
+      objfin.castillo1 = castillo1;
+      objfin.castillo2 = castillo2;
     }
-  }
+  
+  
+    return objfin.ganador;
+
 }
+  
 
 // ---------------
 
