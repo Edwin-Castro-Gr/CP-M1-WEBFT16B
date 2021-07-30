@@ -239,7 +239,17 @@ var mergeLinkedLists = function(linkedListOne, linkedListTwo){
 
 var cardGame = function(playerOneCards, playerTwoCards){
   // Tu código aca:
-
+  var castle1 = 100;
+  var castle2 = 100;
+  var objfin = {
+    winner: "",
+    castle1: 0,
+    castel2: 0,
+  }
+  do {
+    var cartaAtaque = playerOneCards.dequeue();
+    var cartaDefenza
+  }
 }
 
 // ---------------
