@@ -244,7 +244,7 @@ var cardGame = function(playerOneCards, playerTwoCards){
   var objfin = {
     ganador: "",
     castillo1: 0,
-    castillo2: 0,
+    castillo2: 0
   }
   do {
     //Jugador 1
@@ -292,17 +292,16 @@ var cardGame = function(playerOneCards, playerTwoCards){
 
       if (castillo1 < 0 || castillo2 < 0) { 
         break
-      }
-  
+      } 
   
     } while (playerOneCards.size() > 0) //* ó cuando los mazos se acaben.
   
   
-    if(castillo1 < castillo2) { //Cuando Gana El jugador 1
+    if(castillo1 < castillo2) { //Cuando Gana El jugador 2
       objfin.ganador = "PLAYER TWO";
       objfin.castillo1 = castillo1;
       objfin.castillo2 = castillo2;
-    } else if (castillo1 > castillo2){ //Cuando Gana El jugador2
+    } else if (castillo1 > castillo2){ //Cuando Gana El jugador 1
       objfin.ganador = "PLAYER ONE";
       objfin.castillo1 = castillo1;
       objfin.castillo2 = castillo2;
@@ -311,8 +310,7 @@ var cardGame = function(playerOneCards, playerTwoCards){
       objfin.castillo1 = castillo1;
       objfin.castillo2 = castillo2;
     }
-  
-  
+
     return objfin.ganador;
 
 }
@@ -385,7 +383,24 @@ BinarySearchTree.prototype.height = function(){
 
 var binarySearch = function (array, target) {
   // Tu código aca:
+  let primero = 0;
+  let ultimo = array.length - 1;
+  let posicion = -1;
+  let encontrado = false;
+  let medio;
 
+  while (encontrado === false && primero <= ultimo) {
+    medio = Math.floor((primero + ultimo) / 2);
+    if (array[medio] == target) {
+      encontrado = true;
+      posicion = medio;
+    } else if (array[medio] > target) {
+      ultimo = medio - 1;
+    } else {
+      primero = medio + 1;
+    }
+  }
+  return posicion;
 }
 
 // EJERCICIO 9
@@ -413,7 +428,20 @@ var binarySearch = function (array, target) {
 
 var specialSort = function(array, orderFunction) {
   // Tu código aca:
+  let huboCambio = true;
 
+  while (huboCambio) {
+    huboCambio = false;
+    for (let i = 0; i < array.length - 1; i++) {
+      if (orderFunction(array[i], array[i + 1]) === -1) {
+        let res = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = res;
+        huboCambio = true;
+      }
+    }
+  }
+  return array;
 }
 
 // ----- Closures -----
@@ -446,7 +474,17 @@ var specialSort = function(array, orderFunction) {
 
 function closureDetect(symptoms, min) {
   // Tu código aca:
+  return function (person) {
+    var contSymp = 0;
 
+    for (var i = 0; i < symptoms.length; i++) {
+      if (symptoms.includes(person.symptoms[i])) {
+        contSymp++;
+      }
+    }
+    if (contSymp >= min) return true;
+    return false;
+  }
 }
 
 // -------------------
