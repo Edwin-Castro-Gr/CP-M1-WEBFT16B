@@ -248,7 +248,15 @@ var cardGame = function(playerOneCards, playerTwoCards){
   }
   do {
     var cartaAtaque = playerOneCards.dequeue();
-    var cartaDefenza
+    var cartaDefensa = playerOneCards.dequeue();
+    var cartaAtaque2 = playerTwoCards.dequeue();
+    var cartaDefensa2 = playerTwoCards.dequeue();
+    if ( cartaDefensa.type ==="Protector"){
+      cartaDefensa.defense = cartaDefensa.defense * 2;
+    }
+    if (cartaAtaque.type ==="Protector"){
+      
+    }
   }
 }
 
