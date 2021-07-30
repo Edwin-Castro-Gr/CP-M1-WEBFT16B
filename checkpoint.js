@@ -280,12 +280,12 @@ var cardGame = function(playerOneCards, playerTwoCards){
         cartaAtaque2.attack = cartaAtaque2.attack * 2;
       }
 
-      var ataqueJugador1 = cartaAtaque2.defense - cartaAtaque1.attack;
+      var ataqueJugador1 = cartaDefensa2.defense - cartaAtaque1.attack;
       if (ataqueJugador1 < 0) {
         castillo2 += ataqueJugador1;
       }
          
-      var ataqueJugador2 = cartaDefensa1.defense - cartaDefensa2.attack 
+      var ataqueJugador2 = cartaDefensa1.defense - cartaAtaque2.attack;
       if (ataqueJugador2 < 0) { 
         castillo1 += ataqueJugador2
       }
@@ -314,7 +314,6 @@ var cardGame = function(playerOneCards, playerTwoCards){
     return objfin.ganador;
 
 }
-  
 
 // ---------------
 
