@@ -146,28 +146,27 @@ LinkedList.prototype.size = function(){
 
 LinkedList.prototype.switchPos = function(pos1, pos2){
   // Tu código aca:
-  var nActual1 = this.head;
-  var nActual2 = this.head;
-
-  if(pos1 > this.size() || pos1 >this.size() || pos1 < 0 || pos2 < 0) {
+  let nActual = this.head;
+  let nActual2 = this.head;
+  if(pos1 > this.size() || pos2 > this.size() || pos1 < 0 || pos2 < 0){
     return false;
   }else if (this.head === null) {
     return false;
-  }else{
-    for (let i = 0; i < pos1; i++) {
-      nActual1 = nActual1.next;
+  }
+  else {
+    for (let i = 0; i < pos1 ; i++) {
+        nActual = nActual.next;
     }
-    for (let j = 0; j < pos2; j++) {
-      
-      nActual2 = nActual2.next;
+    let aux1 = nActual.value;
+    for (let i = 0; i < pos2; i++) {
+      nActual2 = nActual2.next; 
     }
-    let aux1 = nActual2.value;
-    let aux2 = nActual1.value;
-    nActual2.value = aux2;
-    nActual1.value = aux1;
+    let aux2 = nActual2.value;
+    nActual.value = aux2;
+    nActual2.value = aux1;
     return true;
 }
- 
+
 }
 // EJERCICIO 5
 // Implementar la función mergeLinkedLists que, a partir de dos listas simplemente enlazadas 
@@ -264,7 +263,31 @@ var cardGame = function(playerOneCards, playerTwoCards){
 
 BinarySearchTree.prototype.height = function(){
   // Tu código aca:
+  if(!this.value){
+    return 0;
+  }
+ 	// si el arbol solo tiene 1 nivel
+  
+	if(this.left === null && this.right === null){
+    return 1;
+  }
+	// verifico hasta donde la rama izquierda se corta
+  
+	if(this.left === null){
+    return 1 + this.right.height();
+  }
+ 	// verifico hasta donde la rama derecha se corta
+  
+	if(this.right === null){
+    return 1 + this.left.height();
+  }
 
+	// paso la mas larga con Math.max
+  
+	var left = this.left.height()
+  	var right = this.right.height()
+ 
+	return 1 + Math.max(left, right)
 }
 
 
